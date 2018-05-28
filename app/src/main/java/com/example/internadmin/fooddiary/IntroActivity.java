@@ -29,14 +29,15 @@ public class IntroActivity extends AppIntro2 {
         // Just set a title, description, background and image. AppIntro will do the rest.
         String title = "Hello World!";
         String description = "This is a sample slide";
-        addSlide(AppIntroFragment.newInstance(title, description, R.drawable.ic_launcher_foreground, Color.parseColor("#3F51B5")));
+        int color = Color.parseColor("#3F51B5");
+        addSlide(AppIntroFragment.newInstance(title, description, R.drawable.ic_launcher_foreground, color));
         String title2 = "Hello Again!";
         String description2 = "This is another sample slide";
-        addSlide(AppIntroFragment.newInstance(title2, description2, R.drawable.ic_launcher_foreground, Color.parseColor("#3F51B5")));
+        addSlide(AppIntroFragment.newInstance(title2, description2, R.drawable.ic_launcher_foreground, color));
 
         // OPTIONAL METHODS
         // Override bar/separator color.
-        setBarColor(Color.parseColor("#3F51B5"));
+        setBarColor(color);
         //setSeparatorColor(Color.parseColor("#2196F3"));
 
         // Hide Skip/Done button.

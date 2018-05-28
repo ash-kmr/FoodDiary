@@ -1,9 +1,10 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-21:12
+ADDED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-22:12
+MERGED from [com.github.apl-devs:appintro:v4.2.3] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\appintro-v4.2.3.aar\1026b8adaa373d31634cd529529db245\AndroidManifest.xml:2:1-13:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\0152a9b34b6261b2d040a4aec38baca1\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\080cca1d2c048d283450f7dc16b5eb09\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\6482ebe59228ef6099bb18df8ad60928\AndroidManifest.xml:17:1-22:12
@@ -16,25 +17,27 @@ MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Intern Admin\.
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\358c89ed6cfcc7506c106d82e22beef5\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\febce68a6ab4835f65d3506c44db465e\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\1cf1455fdbe27515d04145f44bbc3374\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-22:12
 	package
 		ADDED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:3:5-48
 		INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-21:12
+		ADDED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-22:12
 		INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-21:12
+		ADDED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:1-22:12
 		INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:5:5-19:19
+ADDED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:5:5-20:19
+MERGED from [com.github.apl-devs:appintro:v4.2.3] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\appintro-v4.2.3.aar\1026b8adaa373d31634cd529529db245\AndroidManifest.xml:11:5-47
+MERGED from [com.github.apl-devs:appintro:v4.2.3] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\appintro-v4.2.3.aar\1026b8adaa373d31634cd529529db245\AndroidManifest.xml:11:5-47
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\080cca1d2c048d283450f7dc16b5eb09\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\080cca1d2c048d283450f7dc16b5eb09\AndroidManifest.xml:9:5-20
 	android:supportsRtl
@@ -63,10 +66,16 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:16:17-77
 	android:name
 		ADDED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:16:27-74
+activity#com.example.internadmin.fooddiary.IntroActivity
+ADDED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:19:9-60
+	android:name
+		ADDED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml:19:19-48
 uses-sdk
 INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\Intern Admin\AndroidStudioProjects\FoodDiary\app\src\main\AndroidManifest.xml
+MERGED from [com.github.apl-devs:appintro:v4.2.3] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\appintro-v4.2.3.aar\1026b8adaa373d31634cd529529db245\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.apl-devs:appintro:v4.2.3] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\appintro-v4.2.3.aar\1026b8adaa373d31634cd529529db245\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\0152a9b34b6261b2d040a4aec38baca1\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\0152a9b34b6261b2d040a4aec38baca1\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Intern Admin\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\080cca1d2c048d283450f7dc16b5eb09\AndroidManifest.xml:5:5-7:41

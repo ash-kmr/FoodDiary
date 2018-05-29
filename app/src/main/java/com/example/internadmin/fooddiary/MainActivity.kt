@@ -10,10 +10,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var btn_tut_activity = findViewById<Button>(R.id.btnTutorial)
+
+        var btn_tut_activity = findViewById<Button>(R.id.btnTutorial);
         btn_tut_activity.setOnClickListener{
             val intent = Intent(this, IntroActivity::class.java)
             startActivity(intent);
         }
+
+        var btn_PieSliderDialog = findViewById<Button>(R.id.btnPieSliderDialog);
+        btn_PieSliderDialog.setOnClickListener{
+            var cdd = PieSliderDialog(this);
+            cdd.show();
+        }
+
+
     }
 }

@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.example.internadmin.fooddiary.PizzaView
-        android:id="@+id/ViewPizza"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="91dp" />
 
     <Button
         android:id="@+id/btnPieSliderDialog"

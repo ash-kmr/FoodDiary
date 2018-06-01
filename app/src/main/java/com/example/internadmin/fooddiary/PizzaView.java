@@ -1,6 +1,7 @@
 package com.example.internadmin.fooddiary;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
@@ -26,7 +27,6 @@ public class PizzaView extends View {
 
     public PizzaView(Context context, AttributeSet AttributeSet) {
         super(context);
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cutpizza);
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mOval = new RectF();
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -41,7 +41,7 @@ public class PizzaView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         Matrix m = new Matrix();
-        mBitmap = Bitmap.createScaledBitmap(mBitmap, w, h, false);
+        mBitmap = decodeSampledBitmapFromResource(getResources(), R.drawable.cutpizza, w, h);
         RectF src = new RectF(0, 0, mBitmap.getWidth(), mBitmap.getHeight());
         RectF dst = new RectF(0, 0, w, h);
         m.setRectToRect(src, dst, Matrix.ScaleToFit.CENTER);
@@ -56,19 +56,56 @@ public class PizzaView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawArc(mOval, -90, mAngle, true, mPaint);
-        canvas.drawText("click me", getWidth() / 2, getHeight() / 2, mTextPaint);
+        canvas.drawText(Integer.toString((int)(mAngle/3.6f+0.5)), getWidth() / 2, getHeight() / 2, mTextPaint);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_MOVE){
             mAngle = (float) Math.toDegrees(Math.atan2(event.getY() - h2, event.getX() - w2));
-            Log.i("PizzaView", "Detected Angle is " + String.valueOf(mAngle));
             mAngle += 90 + 360;
             mAngle %= 360;
-            Log.i("PizzaView", "Calculated Angle is " + String.valueOf(mAngle));
             invalidate();
         }
         return true;
+    }
+
+    private static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) >= reqHeight
+                    && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
+
+    private static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
+                                                         int reqWidth, int reqHeight) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(res, resId, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(res, resId, options);
     }
 }

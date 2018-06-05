@@ -20,7 +20,7 @@ public class Meal {
     private long RowID;
     private DBHandler mydbhandler;
 
-    public Meal(String FoodName, int ver, Date TimeConsumed, float ServingAmt, Bitmap FoodImg, Context ctx){
+    public Meal(String FoodName, int ver, Bitmap FoodImg, Context ctx, Date TimeConsumed, float ServingAmt){
 
         MyDishID = new DishID(FoodName, ver, ctx);
         this.TimeConsumed = TimeConsumed;
@@ -65,9 +65,18 @@ public class Meal {
         return mydbhandler.updateHistoryEntry(MyDishID.getFoodName(), TimeConsumed, ServingAmt, mybitmap, RowID);
     }
 
+    public void setTimeConsumed(Date date){
+        TimeConsumed = date;
+    }
+
+    public void setServingAmt(float amt){
+        ServingAmt = amt;
+    }
+
     public Date getTimeConsumed(){
         return TimeConsumed;
     }
+
 
     public Bitmap getFoodImg(){
         if (FoodImg == null){

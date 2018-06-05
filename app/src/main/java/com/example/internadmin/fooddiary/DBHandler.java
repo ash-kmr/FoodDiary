@@ -204,7 +204,7 @@ public class DBHandler extends SQLiteOpenHelper {
         HISTORY_COLUMN_IMGPATH};
         String[] selectionArgs = {  Long.toString(mealID)  };
 
-        Cursor cursor = db.query(HISTORY_TABLE_NAME, null, selection, selectionArgs,
+        Cursor cursor = db.query(HISTORY_TABLE_NAME, columns, selection, selectionArgs,
                 null, null, null);
 
         if(cursor != null){
@@ -250,7 +250,7 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.query(DISHID_TABLE_NAME, null, selection, selectionArgs,
                 null, null, null);
 
-        if (null != cursor){
+        if (cursor.moveToFirst()){
 
             b.putBoolean("Exists", true);
             b.putString("FoodName", cursor.getString(0));

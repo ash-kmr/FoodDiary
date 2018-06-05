@@ -37,13 +37,13 @@ public class DishID {
         this.ver = ver;
         this.ctx = ctx;
 
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+
         boolean fromDB = populateFromDatabase(FoodName, ver);
 
         if(!fromDB){
             populateFromOnline(FoodName);
         }
-
-        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
 
 
     }
@@ -134,7 +134,7 @@ public class DishID {
             }
         };
 
-        new DownloadDishIDTask(postTaskListener, sharedPrefs.getString("server_address", ""), ctx, FoodName);
+        new DownloadDishIDTask(postTaskListener, sharedPrefs.getString("server_address", ""), ctx, FoodName).execute();
 
     }
 

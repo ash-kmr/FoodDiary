@@ -1,8 +1,10 @@
 package com.example.internadmin.fooddiary
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
@@ -11,18 +13,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var btn_tut_activity = findViewById<Button>(R.id.btnTutorial);
+        val btn_tut_activity = findViewById<Button>(R.id.btnTutorial);
         btn_tut_activity.setOnClickListener{
             val intent = Intent(this, IntroActivity::class.java)
             startActivity(intent);
         }
 
-        var btn_PieSliderDialog = findViewById<Button>(R.id.btnPieSliderDialog);
+        val btn_PieSliderDialog = findViewById<Button>(R.id.btnPieSliderDialog);
         btn_PieSliderDialog.setOnClickListener{
-            var cdd = PieSliderDialog(this);
+            val cdd = PieSliderDialog(this);
             cdd.show();
         }
 
+        putsharedpref();
 
+        val btn_CameraActivity = findViewById<Button>(R.id.btnCamera);
+        btn_CameraActivity.setOnClickListener{
+            val intent = Intent(this, CameraActivity::class.java)
+            startActivity(intent)
+        }
+
+
+        var mydishid = DishID("Briyani", 1, this);
+
+
+    }
+
+    private fun putsharedpref(){
+        val sharedpref = PreferenceManager.getDefaultSharedPreferences(this);
+        val editor = sharedpref.edit();
+        editor.putString("server_address", "http://127.0.0.1/");
+        editor.apply();
     }
 }

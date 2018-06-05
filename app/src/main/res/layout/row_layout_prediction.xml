@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants">
+
+
+    <TextView
+        android:id="@+id/predictedFoodName"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:padding="5dp"
+        android:textSize="25sp"
+        android:paddingStart="20dp"
+        android:gravity="center_vertical"/>
+
+    <ImageButton
+        android:id="@+id/btn_predictionHelp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@null"
+        app:srcCompat="@drawable/ic_help_outline_black_24dp" />
+
+
+</LinearLayout>

@@ -24,7 +24,8 @@
             android:name=".CameraActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_camera"
-            android:theme="@style/FullscreenTheme"/>
+            android:theme="@style/FullscreenTheme" />
+        <activity android:name=".PredictionActivity"></activity>
     </application>
 
 </manifest>

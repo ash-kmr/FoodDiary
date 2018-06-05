@@ -1,6 +1,5 @@
 package com.example.internadmin.fooddiary
 
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -33,8 +32,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val btn_PredictionActivity = findViewById<Button>(R.id.btn_viewpredict);
+        btn_PredictionActivity.setOnClickListener{
+            val intent = Intent(this, PredictionActivity::class.java)
+            startActivity(intent)
+        }
 
-        var mydishid = DishID("Briyani", 1, this);
+
+        //var mydishid = DishID("Briyani", 1, this);
 
 
     }

@@ -145,8 +145,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 new String[] { Long.toString(id) });
     }
 
-    public List<Integer> getHistoryEntries(Date startdate, Date enddate) {
-        List<Integer> list = new ArrayList<>();
+    public List<Long> getHistoryEntries(Date startdate, Date enddate) {
+        List<Long> list = new ArrayList<>();
 
         String sqlquery = "select " + HISTORY_COLUMN_ID +  " from " + HISTORY_TABLE_NAME;
 
@@ -170,7 +170,7 @@ public class DBHandler extends SQLiteOpenHelper {
         res.moveToFirst();
 
         while(!res.isAfterLast()){
-            list.add(res.getInt(res.getColumnIndex(HISTORY_COLUMN_ID)));
+            list.add(Long.valueOf(res.getInt(res.getColumnIndex(HISTORY_COLUMN_ID))));
             res.moveToNext();
         }
         res.close();

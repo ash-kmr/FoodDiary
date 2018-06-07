@@ -98,6 +98,8 @@ public class MainActivity extends AppCompatActivity{
         rightAxis.setEnabled(false);
         leftAxis.setEnabled(false);
         chart.setDrawBorders(false);
+        chart.setPinchZoom(false);
+        chart.setDoubleTapToZoomEnabled(false);
         chart.setMinimumWidth(size.x);
         barcard.addView(chart);
         return barcard;
@@ -106,7 +108,7 @@ public class MainActivity extends AppCompatActivity{
     public ListView createBreakfast(){
         ListView breakfast = new ListView(MainActivity.this);
         String[] elem = new String[] {"android", "php"};
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout., elem);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, elem);
         return breakfast;
     }
 }

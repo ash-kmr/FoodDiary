@@ -8,21 +8,9 @@
     tools:context=".MainActivity">
 
 
-    <ScrollView
-        android:id="@+id/mainscroll"
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="com.example.internadmin.fooddiary.Summary"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/innerlinear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/bar_chart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-    </ScrollView>
+        android:layout_height="436dp" />
 </LinearLayout>

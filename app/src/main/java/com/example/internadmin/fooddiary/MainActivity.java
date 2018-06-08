@@ -1,5 +1,6 @@
 package com.example.internadmin.fooddiary;
 
+import android.support.v4.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -34,40 +35,21 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
+    /*
     CardView barcard;
     BarChart chart;
     NonScrollListView breakfastlist;
     NonScrollListView lunchlist;
-    NonScrollListView dinnerlist;
+    NonScrollListView dinnerlist;*/
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         // main scrollview for MainActivity
-        ScrollView sv = new ScrollView(MainActivity.this);
-        LinearLayout ll = new LinearLayout(MainActivity.this);
-        ll.setOrientation(LinearLayout.VERTICAL);
-        sv.addView(ll);
-        // get display size of phone
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int[][] vals = new int[2][7];
-        vals[0] = new int[]{1, 2, 3, 4, 5, 6, 7};
-        vals[1] = new int[]{1, 2, 3, 4, 5, 6, 7};
-        CardView barcard = createChart(vals);
-        ll.addView(barcard);
-
-        CardView breakfastcard = createBreakfast();
-        CardView lunchcard = createLunch();
-        CardView dinnercard = createDinner();
-        ll.addView(breakfastcard);
-        //breakfastcard.setVisibility(View.INVISIBLE);
-        barcard.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.fadein));
-        ll.addView(lunchcard);
-        ll.addView(dinnercard);
-        setContentView(sv);
-
-    }
+        setContentView(R.layout.activity_main);
+        Summary summary = new Summary();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.fragment2, summary).commit();
+    }/*
     public CardView createChart(int[][] vals){
         // get system width
         Display display = getWindowManager().getDefaultDisplay();
@@ -214,5 +196,5 @@ public class MainActivity extends AppCompatActivity{
         //setListViewHeightBasedOnChildren(breakfastlist);
         dinnerlayout.addView(dinnerlist);
         return dinnercard;
-    }
+    }*/
 }

@@ -8,9 +8,12 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ArrayAdapter;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.preference.PreferenceManager;
@@ -31,6 +34,11 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
+    CardView barcard;
+    BarChart chart;
+    NonScrollListView breakfastlist;
+    NonScrollListView lunchlist;
+    NonScrollListView dinnerlist;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -49,7 +57,14 @@ public class MainActivity extends AppCompatActivity{
         CardView barcard = createChart(vals);
         ll.addView(barcard);
 
-        //CardView breakfastcard = createBreakfast();
+        CardView breakfastcard = createBreakfast();
+        CardView lunchcard = createLunch();
+        CardView dinnercard = createDinner();
+        ll.addView(breakfastcard);
+        //breakfastcard.setVisibility(View.INVISIBLE);
+        barcard.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.fadein));
+        ll.addView(lunchcard);
+        ll.addView(dinnercard);
         setContentView(sv);
 
     }
@@ -58,7 +73,7 @@ public class MainActivity extends AppCompatActivity{
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        CardView barcard = new CardView(MainActivity.this);
+        barcard = new CardView(MainActivity.this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
@@ -72,7 +87,7 @@ public class MainActivity extends AppCompatActivity{
         barcard.setCardBackgroundColor(Color.parseColor("#FFC6D6C3"));
         barcard.setMaxCardElevation(15);
         barcard.setCardElevation(9);
-        BarChart chart = new BarChart(MainActivity.this);
+        chart = new BarChart(MainActivity.this);
         ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
         ArrayList<BarEntry> yVals = new ArrayList<BarEntry>();
         for(int i = 0; i < 7; i++){
@@ -98,18 +113,106 @@ public class MainActivity extends AppCompatActivity{
         rightAxis.setEnabled(false);
         leftAxis.setEnabled(false);
         chart.setDrawBorders(false);
-        chart.setPinchZoom(false);
-        chart.setDoubleTapToZoomEnabled(false);
+        chart.setTouchEnabled(false);
         chart.setMinimumWidth(size.x);
         barcard.addView(chart);
         return barcard;
     }
 
-    public ListView createBreakfast(){
-        ListView breakfast = new ListView(MainActivity.this);
-        FoodItemAdapter adapter;
-        breakfast.setAdapter(null);
-        final ArrayList<FoodItem> foodlist =
-        return breakfast;
+    public CardView createBreakfast(){
+        // creating card for breakfast
+        CardView breakfastcard = new CardView(MainActivity.this);
+        LinearLayout breakfastlayout = new LinearLayout(MainActivity.this);
+        breakfastlayout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        int margin = 8;
+        params.setMargins(margin, margin, margin, margin);
+        breakfastcard.setLayoutParams(params);
+        breakfastcard.setRadius(9);
+        breakfastcard.setCardBackgroundColor(Color.parseColor("#FFC6D6C3"));
+        breakfastcard.setMaxCardElevation(15);
+        breakfastcard.setCardElevation(9);
+        breakfastcard.addView(breakfastlayout);
+        // creating heading for breakfastcard
+        TextView breakfasthead = new TextView(MainActivity.this);
+        breakfasthead.setText("Breakfast");
+        breakfastlayout.addView(breakfasthead);
+        breakfastlist = new NonScrollListView(MainActivity.this);
+        ArrayList<FoodItem> foodlist = new ArrayList<>();
+        foodlist.add(new FoodItem("thosai", "yummy"));
+        foodlist.add(new FoodItem("thosai", "yummy"));
+        foodlist.add(new FoodItem("aloo paratha", "not so good"));
+        FoodItemAdapter adapter = new FoodItemAdapter(MainActivity.this, R.layout.food_item, foodlist);
+        breakfastlist.setAdapter(adapter);
+        //setListViewHeightBasedOnChildren(breakfastlist);
+        breakfastlayout.addView(breakfastlist);
+        return breakfastcard;
+    }
+    public CardView createLunch(){
+        // creating card for breakfast
+        CardView lunchcard = new CardView(MainActivity.this);
+        LinearLayout lunchlayout = new LinearLayout(MainActivity.this);
+        lunchlayout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        int margin = 8;
+        params.setMargins(margin, margin, margin, margin);
+        lunchcard.setLayoutParams(params);
+        lunchcard.setRadius(9);
+        lunchcard.setCardBackgroundColor(Color.parseColor("#FFC6D6C3"));
+        lunchcard.setMaxCardElevation(15);
+        lunchcard.setCardElevation(9);
+        lunchcard.addView(lunchlayout);
+        // creating heading for breakfastcard
+        TextView breakfasthead = new TextView(MainActivity.this);
+        breakfasthead.setText("Lunch");
+        lunchlayout.addView(breakfasthead);
+        lunchlist = new NonScrollListView(MainActivity.this);
+        ArrayList<FoodItem> foodlist = new ArrayList<>();
+        foodlist.add(new FoodItem("thosai", "yummy"));
+        foodlist.add(new FoodItem("thosai", "yummy"));
+        foodlist.add(new FoodItem("aloo paratha", "not so good"));
+        FoodItemAdapter adapter = new FoodItemAdapter(MainActivity.this, R.layout.food_item, foodlist);
+        lunchlist.setAdapter(adapter);
+        //setListViewHeightBasedOnChildren(breakfastlist);
+        lunchlayout.addView(lunchlist);
+        return lunchcard;
+    }
+    public CardView createDinner(){
+        // creating card for breakfast
+        CardView dinnercard = new CardView(MainActivity.this);
+        LinearLayout dinnerlayout = new LinearLayout(MainActivity.this);
+        dinnerlayout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        int margin = 8;
+        params.setMargins(margin, margin, margin, margin);
+        dinnercard.setLayoutParams(params);
+        dinnercard.setRadius(9);
+        dinnercard.setCardBackgroundColor(Color.parseColor("#FFC6D6C3"));
+        dinnercard.setMaxCardElevation(15);
+        dinnercard.setCardElevation(9);
+        dinnercard.addView(dinnerlayout);
+        // creating heading for breakfastcard
+        TextView breakfasthead = new TextView(MainActivity.this);
+        breakfasthead.setText("Dinner");
+        dinnerlayout.addView(breakfasthead);
+        dinnerlist = new NonScrollListView(MainActivity.this);
+        ArrayList<FoodItem> foodlist = new ArrayList<>();
+        foodlist.add(new FoodItem("thosai", "yummy"));
+        foodlist.add(new FoodItem("thosai", "yummy"));
+        foodlist.add(new FoodItem("aloo paratha", "not so good"));
+        FoodItemAdapter adapter = new FoodItemAdapter(MainActivity.this, R.layout.food_item, foodlist);
+        dinnerlist.setAdapter(adapter);
+        //setListViewHeightBasedOnChildren(breakfastlist);
+        dinnerlayout.addView(dinnerlist);
+        return dinnercard;
     }
 }

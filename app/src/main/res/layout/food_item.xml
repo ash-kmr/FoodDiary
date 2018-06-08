@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#259CD2">
+    android:background="#fff">
     <TextView
         android:id="@+id/foodtitle"
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:paddingLeft="1dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="6dp" />
+        android:layout_marginTop="2dp" />
 
     <TextView
         android:id="@+id/foodcontent"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/foodtitle"
-        android:paddingLeft="1dp"
+        android:paddingLeft="2dp"
         android:layout_marginLeft="10dp"
         android:textSize="12sp"
         android:text="TextView" />

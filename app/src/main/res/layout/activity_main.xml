@@ -8,9 +8,14 @@
     tools:context=".MainActivity">
 
 
-    <fragment
-        android:id="@+id/fragment2"
-        android:name="com.example.internadmin.fooddiary.Summary"
+    <LinearLayout
+        android:id="@+id/fragment_layout"
         android:layout_width="match_parent"
-        android:layout_height="436dp" />
+        android:layout_height="509dp"
+        android:orientation="vertical"></LinearLayout>
+
+    <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="57dp" />
 </LinearLayout>

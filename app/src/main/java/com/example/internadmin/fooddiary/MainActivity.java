@@ -2,40 +2,15 @@ package com.example.internadmin.fooddiary;
 
 import android.content.res.Resources;
 import android.support.v4.app.FragmentManager;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
-import android.util.DisplayMetrics;
 import android.view.Display;
-import android.view.animation.AnimationUtils;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.ArrayAdapter;
-import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.ScrollView;
-import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
     @Override
@@ -69,8 +44,9 @@ public class MainActivity extends AppCompatActivity{
         main.addView(ll);
         main.addView(bottomNavigation);
         Summary summary = new Summary();
+        Search searchfrag = new Search();
         FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(ll.getId(), summary).commit();
+        manager.beginTransaction().replace(ll.getId(), searchfrag).commit();
         //AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("Summary", R.drawable.ic_camera_black_24dp, R.color.colorAccent);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem("Camera", R.drawable.ic_arrow_back_white, R.color.colorPrimary);

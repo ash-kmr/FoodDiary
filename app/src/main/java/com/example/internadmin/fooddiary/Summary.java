@@ -63,22 +63,24 @@ public class Summary extends Fragment {
         display.getSize(size);
         int[][] vals = new int[2][7];
         vals[0] = new int[]{1, 2, 3, 4, 5, 6, 7};
-        vals[1] = new int[]{1, 2, 3, 4, 5, 6, 7};
+        vals[1] = new int[]{100, 20, 33, 46, 25, 65, 107};
         CardView barcard = createChart(vals);
         ll.addView(barcard);
         CardView breakfastcard = createBreakfast();
         CardView lunchcard = createLunch();
         CardView dinnercard = createDinner();
         ll.addView(breakfastcard);
-        //breakfastcard.setVisibility(View.INVISIBLE);
-        //barcard.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.fadein));
         ll.addView(lunchcard);
         ll.addView(dinnercard);
         return sv;
     }
 
     public CardView createChart(int[][] vals){
-        // get system width
+        /*
+        function to create the card view for the barchart and integrate barchart with it.
+        Takes input a 2D array containing co-ordinates of top points of bars. (x(vals[0]), y(vals[1]))
+        Returns a CardView object.
+        */
         barcard = new CardView(getContext());
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -89,8 +91,6 @@ public class Summary extends Fragment {
         params.setMargins(marginx, marginy, marginx, marginy);
         barcard.setLayoutParams(params);
         barcard.setRadius(0);
-        // uncomment below line for padding
-        //barcard.setContentPadding(50, 50, 50, 50);
         barcard.setCardBackgroundColor(Color.parseColor("#FFC6D6C3"));
         barcard.setMaxCardElevation(15);
         barcard.setCardElevation(9);
@@ -107,7 +107,6 @@ public class Summary extends Fragment {
         chart.setData(data);
         chart.setMinimumHeight((int) (size.y*0.4));
         chart.animateY(1000);
-        // changing settings to remove everything in chart except bars
         chart.getXAxis().setEnabled(false);
         chart.getAxisRight().setDrawGridLines(false);
         chart.getAxisLeft().setDrawGridLines(false);
@@ -128,7 +127,18 @@ public class Summary extends Fragment {
 
 
     public CardView createBreakfast(){
-        // creating card for breakfast
+        /*
+        function to create cardview for breakfast.
+        Creates a cardview.
+        Structure of cardview:
+        CardView:
+            LinearLayout:
+                RelativeLayout:
+                    BreakFast text
+                    Image
+                ListView
+        Returns the cardview
+        */
         CardView breakfastcard = new CardView(getContext());
         LinearLayout breakfastlayout = new LinearLayout(getContext());
         breakfastlayout.setOrientation(LinearLayout.VERTICAL);
@@ -145,25 +155,20 @@ public class Summary extends Fragment {
         breakfastcard.setMaxCardElevation(15);
         breakfastcard.setCardElevation(9);
         breakfastcard.addView(breakfastlayout);
-        // relative layout for top
         RelativeLayout rl = new RelativeLayout(getContext());
         breakfastlayout.addView(rl);
-        // test for breakfast
         TextView breakfasthead = new TextView(getContext());
         breakfasthead.setText("Breakfast");
         breakfasthead.setId(100);
         breakfasthead.setTextSize(TypedValue.COMPLEX_UNIT_PX, (float) (size.x*0.085));
         RelativeLayout.LayoutParams breakfastparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         breakfastparams.setMargins((int)(size.x*0.06), (int)(size.y*0.04), 0,(int)(size.x*0.05));
-        // image for breakfast
         ImageView sunrise = new ImageView(getContext());
         sunrise.setId(101);
         sunrise.setImageResource(R.drawable.sun);
         RelativeLayout.LayoutParams sunriseparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         sunriseparams.addRule(RelativeLayout.RIGHT_OF, breakfasthead.getId());
         sunriseparams.setMargins((int)(size.x*0.25), (int)(size.y*0.02), 0,(int)(size.x*0.04));
-        //sunriseparams.setMargins();
-        // creating heading for breakfastcard
         rl.addView(breakfasthead, breakfastparams);
         rl.addView(sunrise, sunriseparams);
         breakfastlist = new NonScrollListView(getContext());
@@ -173,12 +178,13 @@ public class Summary extends Fragment {
         foodlist.add(new FoodItem("aloo paratha", "not so good"));
         FoodItemAdapter adapter = new FoodItemAdapter(getContext(), R.layout.food_item, foodlist);
         breakfastlist.setAdapter(adapter);
-        //setListViewHeightBasedOnChildren(breakfastlist);
         breakfastlayout.addView(breakfastlist);
         return breakfastcard;
     }
     public CardView createLunch(){
-        // creating card for breakfast
+        /*
+        Formatting same as createbreakfast
+        */
         CardView lunchcard = new CardView(getContext());
         LinearLayout lunchlayout = new LinearLayout(getContext());
         lunchlayout.setOrientation(LinearLayout.VERTICAL);
@@ -195,25 +201,20 @@ public class Summary extends Fragment {
         lunchcard.setMaxCardElevation(15);
         lunchcard.setCardElevation(9);
         lunchcard.addView(lunchlayout);
-        // relative layout
         RelativeLayout rl = new RelativeLayout(getContext());
         lunchlayout.addView(rl);
-        // creating heading for breakfastcard
         TextView lunchhead = new TextView(getContext());
         lunchhead.setText("Lunch");
         lunchhead.setId(102);
         lunchhead.setTextSize(TypedValue.COMPLEX_UNIT_PX, (float) (size.x*0.085));
         RelativeLayout.LayoutParams lunchparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         lunchparams.setMargins((int)(size.x*0.06), (int)(size.y*0.04), 0,(int)(size.x*0.05));
-        // image for breakfast
         ImageView suncomp = new ImageView(getContext());
         suncomp.setId(103);
         suncomp.setImageResource(R.drawable.fullsun);
         RelativeLayout.LayoutParams suncompparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         suncompparams.addRule(RelativeLayout.RIGHT_OF, lunchhead.getId());
         suncompparams.setMargins((int)(size.x*0.375), (int)(size.y*0.02), 0,(int)(size.x*0.04));
-        //sunriseparams.setMargins();
-        // creating heading for breakfastcard
         rl.addView(lunchhead, lunchparams);
         rl.addView(suncomp, suncompparams);
         lunchlist = new NonScrollListView(getContext());
@@ -223,12 +224,13 @@ public class Summary extends Fragment {
         foodlist.add(new FoodItem("aloo paratha", "not so good"));
         FoodItemAdapter adapter = new FoodItemAdapter(getContext(), R.layout.food_item, foodlist);
         lunchlist.setAdapter(adapter);
-        //setListViewHeightBasedOnChildren(breakfastlist);
         lunchlayout.addView(lunchlist);
         return lunchcard;
     }
     public CardView createDinner(){
-        // creating card for breakfast
+        /*
+        Formatting same as createbreakfast
+        */
         CardView dinnercard = new CardView(getContext());
         LinearLayout dinnerlayout = new LinearLayout(getContext());
         dinnerlayout.setOrientation(LinearLayout.VERTICAL);
@@ -245,25 +247,20 @@ public class Summary extends Fragment {
         dinnercard.setMaxCardElevation(15);
         dinnercard.setCardElevation(9);
         dinnercard.addView(dinnerlayout);
-        // relative layout
         RelativeLayout rl = new RelativeLayout(getContext());
         dinnerlayout.addView(rl);
-        // creating heading for breakfastcard
         TextView dinnerhead = new TextView(getContext());
         dinnerhead.setText("Dinner");
         dinnerhead.setId(104);
         dinnerhead.setTextSize(TypedValue.COMPLEX_UNIT_PX, (float) (size.x*0.085));
         RelativeLayout.LayoutParams dinnerparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         dinnerparams.setMargins((int)(size.x*0.06), (int)(size.y*0.04), 0,(int)(size.x*0.05));
-        // image for breakfast
         ImageView moon = new ImageView(getContext());
         moon.setId(105);
         moon.setImageResource(R.drawable.moon);
         RelativeLayout.LayoutParams moonparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         moonparams.addRule(RelativeLayout.RIGHT_OF, dinnerhead.getId());
         moonparams.setMargins((int)(size.x*0.365), (int)(size.y*0.02), 0,(int)(size.x*0.04));
-        //sunriseparams.setMargins();
-        // creating heading for breakfastcard
         rl.addView(dinnerhead, dinnerparams);
         rl.addView(moon, moonparams);
         dinnerlist = new NonScrollListView(getContext());
@@ -273,7 +270,6 @@ public class Summary extends Fragment {
         foodlist.add(new FoodItem("aloo paratha", "not so good"));
         FoodItemAdapter adapter = new FoodItemAdapter(getContext(), R.layout.food_item, foodlist);
         dinnerlist.setAdapter(adapter);
-        //setListViewHeightBasedOnChildren(breakfastlist);
         dinnerlayout.addView(dinnerlist);
         return dinnercard;
     }

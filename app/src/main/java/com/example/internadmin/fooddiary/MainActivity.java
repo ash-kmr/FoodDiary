@@ -1,11 +1,15 @@
 package com.example.internadmin.fooddiary;
 
 import android.content.res.Resources;
+import android.support.annotation.ColorRes;
 import android.support.v4.app.FragmentManager;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.Menu;
@@ -22,6 +26,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 public class MainActivity extends AppCompatActivity{
     MaterialSearchView searchView;
     Toolbar toolbar;
+    int prevpos = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -68,17 +73,26 @@ public class MainActivity extends AppCompatActivity{
                 //Do some magic
             }
         });
+        searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
+
         // HANDLING THE TOOLBAR
+        // ACTIONBAR HEIGHT
+        int actionBarHeight = 0;
+        TypedValue tv = new TypedValue();
+        if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true))
+        {
+            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data,getResources().getDisplayMetrics());
+        }
         //main.setOrientation(LinearLayout.VERTICAL);
         main.setId(94);
         main.addView(toolbar);
         main.addView(searchView);
-        LinearLayout ll = new LinearLayout(MainActivity.this);
+        final LinearLayout ll = new LinearLayout(MainActivity.this);
         ll.setId(95);
         ll.setOrientation(LinearLayout.VERTICAL);
         FrameLayout.LayoutParams fragparams = new FrameLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        fragparams.setMargins(0, 200, 0, 0);
-        fragparams.height = (int)((size.y)*0.87);
+        fragparams.setMargins(0, actionBarHeight, 0, (int)(size.y*0.1));
+        fragparams.height = (int)(size.y - size.y*0.14-actionBarHeight);
         fragparams.width = (int)(size.x*1);
         ll.setLayoutParams(fragparams);
         AHBottomNavigation bottomNavigation = new AHBottomNavigation(MainActivity.this);
@@ -89,20 +103,56 @@ public class MainActivity extends AppCompatActivity{
         navparams.gravity = Gravity.BOTTOM;
         main.addView(bottomNavigation);
         main.addView(ll);
-        Summary summary = new Summary();
-        FragmentManager manager = getSupportFragmentManager();
+        final Summary summary = new Summary();
+        final FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(ll.getId(), summary).commit();
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("Summary", R.drawable.ic_camera_black_24dp, R.color.colorAccent);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem("Camera", R.drawable.ic_arrow_back_white, R.color.colorPrimary);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem("Query Food", R.drawable.ic_arrow_forward_white, R.color.colorPrimary);
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem("Query", R.drawable.ic_arrow_forward_white, R.color.colorPrimary);
         bottomNavigation.addItem(item1);
         bottomNavigation.addItem(item2);
         bottomNavigation.addItem(item3);
-        bottomNavigation.setAccentColor(Color.parseColor("#F63D2B"));
-        bottomNavigation.setInactiveColor(Color.parseColor("#747474"));
+        bottomNavigation.addItem(item4);
+        //ONLINE CODE
+        bottomNavigation.setDefaultBackgroundColor(Color.WHITE);
+        bottomNavigation.setAccentColor(fetchColor(R.color.colorPrimary));
+        bottomNavigation.setInactiveColor(fetchColor(R.color.grey));
         bottomNavigation.setTitleState(AHBottomNavigation.TitleState.SHOW_WHEN_ACTIVE);
-        bottomNavigation.setCurrentItem(1);
+        bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
+            @Override
+            public boolean onTabSelected(int position, boolean wasSelected) {
+                FragmentTransaction transaction = manager.beginTransaction();
+                if(prevpos <= position){
+                    transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
+                    prevpos = position;
+                }else{
+                    transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right);
+                    prevpos = position;
+                }
+                if(!wasSelected){
+                    if(position == 0){
+                        transaction.replace(ll.getId(), summary);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    }
+                    if(position == 1){
+                        Test test = new Test();
+                        transaction.replace(ll.getId(), test);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    }
+                }
+                //manager.beginTransaction().replace(summary.getId(), test).commit();
+
+                return true;
+            }
+        });
         setContentView(main);
+    }
+
+    private int fetchColor(@ColorRes int color) {
+        return ContextCompat.getColor(this, color);
     }
 
     @Override
@@ -111,5 +161,13 @@ public class MainActivity extends AppCompatActivity{
         MenuItem item = menu.findItem(R.id.action_search);
         searchView.setMenuItem(item);
         return true;
+    }
+    @Override
+    public void onBackPressed() {
+        if (searchView.isSearchOpen()) {
+            searchView.closeSearch();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
